@@ -7,15 +7,25 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.Button
 
 class SegundaActivity : AppCompatActivity() {
+    private var contador = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("VIDA", "Segunda → onCreate")
         setContentView(R.layout.activity_segunda)
+
         val nombre = intent.getStringExtra("nombre") ?: "misterioso visitante"
         findViewById<TextView>(R.id.tvBienvenida).text =
             "Sala de experimentos de $nombre"
+
+        val tvContador = findViewById<TextView>(R.id.tvContador)
+        tvContador.text = contador.toString()
+        findViewById<Button>(R.id.btnSumar).setOnClickListener {
+            contador++
+            tvContador.text = contador.toString()
+        }
     }
 
     override fun onStart() { super.onStart(); Log.d("VIDA", "Segunda → onStart") }

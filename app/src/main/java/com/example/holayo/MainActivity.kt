@@ -1,5 +1,6 @@
 package com.example.holayo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -33,6 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         perfil.comidaFavorita?.let {
             tvComida.text = "Domingo de $it"
+        }
+
+        val btnIrSegunda = findViewById<Button>(R.id.btnIrSegunda)
+        btnIrSegunda.setOnClickListener {
+        // Intent EXPLÍCITO: nombra al destino por su clase.
+            val intent = Intent(this, SegundaActivity::class.java)
+        // El equipaje: un dato que viaja con el mensaje.
+            intent.putExtra("nombre", perfil.apodo ?: perfil.nombre)
+            startActivity(intent)
         }
 
         // Una lambda: la función que se ejecuta cuando el botón se toca.

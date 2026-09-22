@@ -33,4 +33,5 @@ class SegundaActivity : AppCompatActivity() {
     override fun onPause() { super.onPause(); Log.d("VIDA", "Segunda → onPause") }
     override fun onStop() { super.onStop(); Log.d("VIDA", "Segunda → onStop") }
     override fun onDestroy() { super.onDestroy(); Log.d("VIDA", "Segunda → onDestroy") }
+    override fun onRestart() { super.onRestart(); Log.d("VIDA", "Segunda → onRestart") }
 }

@@ -47,6 +47,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val btnCompartir = findViewById<Button>(R.id.btnCompartir)
+        btnCompartir.setOnClickListener {
+            val texto = buildString {
+                append("Soy $comoLlamarme. ${perfil.dato}")
+                perfil.comidaFavorita?.let { append(" Los domingos, $it.") }
+            }
+            val intentCompartir = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, texto)
+            }
+            startActivity(Intent.createChooser(intentCompartir, "Compartir perfil con..."))
+        }
+
         // Una lambda: la función que se ejecuta cuando el botón se toca.
         btnSaludar.setOnClickListener {
             saludoFormal = !saludoFormal

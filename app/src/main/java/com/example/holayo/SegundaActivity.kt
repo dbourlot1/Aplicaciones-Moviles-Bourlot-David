@@ -16,6 +16,8 @@ class SegundaActivity : AppCompatActivity() {
         Log.d("VIDA", "Segunda → onCreate")
         setContentView(R.layout.activity_segunda)
 
+        contador = savedInstanceState?.getInt("contador") ?: 0
+
         val nombre = intent.getStringExtra("nombre") ?: "misterioso visitante"
         findViewById<TextView>(R.id.tvBienvenida).text =
             "Sala de experimentos de $nombre"
@@ -26,6 +28,12 @@ class SegundaActivity : AppCompatActivity() {
             contador++
             tvContador.text = contador.toString()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("contador", contador)
+        Log.d("VIDA", "Segunda → onSaveInstanceState (contador=$contador)")
     }
 
     override fun onStart() { super.onStart(); Log.d("VIDA", "Segunda → onStart") }

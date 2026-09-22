@@ -8,13 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 data class Perfil(
     val nombre: String,
     val dato: String,
-    val apodo: String? // el ? declara: "puede no haber apodo" — y el compilador lo vigila
+    val apodo: String?, // el ? declara: "puede no haber apodo" — y el compilador lo vigila
+    val comidaFavorita: String? = null // dato opcional
 )
 class MainActivity : AppCompatActivity() {
     private val perfil = Perfil(
         nombre = "David Bourlot",
         dato = "Compu, no explotes...",
-        apodo = null // probá también con un apodo real: "Rama"
+        apodo = null, // probá también con un apodo real: "Rama"
+        comidaFavorita = "Ravioles"
     )
     private var saludoFormal = true
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         val comoLlamarme = perfil.apodo ?: perfil.nombre
         tvSaludo.text = "Hola, soy $comoLlamarme"
         tvDato.text = perfil.dato
+        val tvComida = findViewById<TextView>(R.id.tvComida)
+
+        perfil.comidaFavorita?.let {
+            tvComida.text = "Domingo de $it"
+        }
+
         // Una lambda: la función que se ejecuta cuando el botón se toca.
         btnSaludar.setOnClickListener {
             saludoFormal = !saludoFormal
